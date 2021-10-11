@@ -1,3 +1,6 @@
+#ifndef PASS_THROUGH_UNIT_TEMPLETE_H
+#define PASS_THROUGH_UNIT_TEMPLETE_H
+
 #include <exception>
 #include <iostream>
 #include <string>
@@ -44,8 +47,6 @@ namespace PassThrough
         ~UnitCoder(){};
     };
     
-    
-
-    
-
 } // namespace PassThrough
+
+#endif
