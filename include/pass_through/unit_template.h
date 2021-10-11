@@ -1,4 +1,5 @@
 #include <exception>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -33,7 +34,7 @@ namespace PassThrough
             }
             catch(std::exception& e)
             {
-                ROS_ERROR_STREAM(e.what());
+                std::cout << e.what() << std::endl;
                 return false;
             }
             return true;
