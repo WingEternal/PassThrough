@@ -1,13 +1,10 @@
 #ifndef PASS_THROUGH_PROTOCOL_TEMPLATE_H
 #define PASS_THROUGH_PROTOCOL_TEMPLATE_H
 
-#include <type_traits>
+#include <string>
 
 namespace PassThrough
 {
-    template <typename T> 
-    concept IsByte = (std::is_same<char, T>::value 
-                       || std::is_same<uint8_t, T>::value);
     template <typename DataPackBase>
     class ProtocolBase
     {
@@ -26,7 +23,7 @@ namespace PassThrough
         fromString(const std::string& raw_data) = 0;
 
         // Extended APIs
-        template <IsByte T> bool
+        template <typename T> bool
         toVector(std::vector<T>& send_data) const
         {
             bool is_success;
@@ -36,9 +33,10 @@ namespace PassThrough
             return is_success;
         }
 
-        template <IsByte T> bool
+        template <typename T> bool
         fromVector(const std::vector<T>& raw_data)
         {
+            static_assert(sizeof(T) == 1, "invalid input (sizeof(T) != 1)");
             std::string raw_str;
             raw_str.assign(raw_data.begin(), raw_data.end());
             return this->fromString(raw_str);
