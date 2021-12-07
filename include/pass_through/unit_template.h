@@ -27,7 +27,7 @@ namespace PassThrough
             return true;
         }
 
-        // Encode to Big-Endian
+        // Decode to Little-Endian
         template<typename T> static bool
         DecodeLE(const char* raw, T& data)
         {
